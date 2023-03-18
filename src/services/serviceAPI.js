@@ -65,8 +65,30 @@ export async function getMovieById(id) {
         },
       }
     );
-
     return data;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+export async function getCastById(id) {
+  try {
+    const { data } = await axios.get(
+      `https://api.themoviedb.org/3/movie/${id}/credits`,
+      {
+        params: {
+          api_key: API_KEY,
+          language: 'en-US',
+        },
+      }
+    );
+    const cast = data.cast.map(
+      ({ character, name, profile_path, popularity }) => {
+        return { character, name, profile_path, popularity };
+      }
+    );
+
+    return cast;
   } catch (error) {
     throw new Error(error);
   }

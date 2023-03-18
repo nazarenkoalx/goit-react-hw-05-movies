@@ -2,6 +2,7 @@ import { SearchForm } from 'components/SearchForm/SearchForm';
 import { useEffect, useState } from 'react';
 import { searchMovies } from 'services/serviceAPI';
 import { FilmList } from 'components/FilmList/FilmList';
+import { errorToast } from '../Toasts/Toasts';
 
 export const MoviesSearch = () => {
   const [query, setQuery] = useState('');
@@ -9,8 +10,14 @@ export const MoviesSearch = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
+    setMovies([]);
+    setError('');
+    if (!query) return;
     searchMovies(query)
       .then(normalisedMovies => {
+        if (normalisedMovies.length === 0) {
+          return errorToast('There are no matches with your query(');
+        }
         setMovies(normalisedMovies);
       })
       .catch(error => setError(error));
