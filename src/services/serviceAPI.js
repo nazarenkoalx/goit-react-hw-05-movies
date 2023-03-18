@@ -53,3 +53,21 @@ export async function searchMovies(searchQuery) {
     throw new Error(error);
   }
 }
+
+export async function getMovieById(id) {
+  try {
+    const { data } = await axios.get(
+      `https://api.themoviedb.org/3/movie/${id}`,
+      {
+        params: {
+          api_key: API_KEY,
+          language: 'en-US',
+        },
+      }
+    );
+
+    return data;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
