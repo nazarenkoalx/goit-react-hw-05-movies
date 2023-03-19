@@ -1,8 +1,9 @@
 import noPhoto from '../../images/no-photo.png';
 import { MovieCard } from './FilmListItem.styled';
 import { Link, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-export const FilmListItem = ({ id, title, poster_path, vote_average }) => {
+export const FilmListItem = ({ id, title, poster_path }) => {
   const posterBaseUrl = 'https://www.themoviedb.org/t/p/w500';
   const posterPath =
     poster_path === null ? `${noPhoto}` : `${posterBaseUrl}${poster_path}`;
@@ -18,4 +19,10 @@ export const FilmListItem = ({ id, title, poster_path, vote_average }) => {
       </Link>
     </MovieCard>
   );
+};
+
+FilmListItem.propTypes = {
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  poster_path: PropTypes.string.isRequired,
 };

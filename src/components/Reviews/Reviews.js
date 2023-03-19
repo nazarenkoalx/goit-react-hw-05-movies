@@ -5,7 +5,7 @@ import { errorToast } from '../Toasts/Toasts';
 import { ReviewList } from 'components/ReviewList/RewiewList';
 import { Loader } from 'components/Loader/Loader';
 
-export const Reviews = () => {
+const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -47,3 +47,5 @@ export const Reviews = () => {
     </>
   );
 };
+
+export default Reviews;

@@ -6,7 +6,7 @@ import { CastList } from 'components/CastList/CastList';
 import { errorToast } from '../Toasts/Toasts';
 import { Loader } from 'components/Loader/Loader';
 
-export const Cast = () => {
+const Cast = () => {
   const [cast, setCast] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -53,3 +53,5 @@ export const Cast = () => {
     </>
   );
 };
+
+export default Cast;

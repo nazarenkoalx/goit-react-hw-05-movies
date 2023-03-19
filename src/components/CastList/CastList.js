@@ -1,6 +1,7 @@
 import { CastListStyled } from './CastList.styled';
 import { CastListItem } from 'components/CastListItem/CastListItem';
 import noPhoto from '../../images/no-photo.png';
+import PropTypes from 'prop-types';
 
 export const CastList = ({ cast }) => {
   return (
@@ -24,4 +25,15 @@ export const CastList = ({ cast }) => {
       </CastListStyled>
     )
   );
+};
+
+CastList.propTypes = {
+  cast: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      character: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      profile_path: PropTypes.string,
+    })
+  ).isRequired,
 };

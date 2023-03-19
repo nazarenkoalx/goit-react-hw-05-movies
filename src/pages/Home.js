@@ -1,7 +1,7 @@
 import { TrendingMovies } from 'components/TrendingMovies/TrendingMovies';
 import { Title } from 'components/Title/Title';
 
-export const Home = () => {
+const Home = () => {
   return (
     <main>
       <Title> Trending movies, last week:</Title>
@@ -9,3 +9,5 @@ export const Home = () => {
     </main>
   );
 };
+
+export default Home;

@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import { Form, Input, Button } from './SearchForm.styled';
 import { CiSearch } from 'react-icons/ci';
 import { errorToast } from '../Toasts/Toasts';
+import PropTypes from 'prop-types';
 
 export const SearchForm = ({ setSearchQuery, query }) => {
   const handleSubmit = evt => {
@@ -27,4 +27,9 @@ export const SearchForm = ({ setSearchQuery, query }) => {
       </Button>
     </Form>
   );
+};
+
+SearchForm.propTypes = {
+  setSearchQuery: PropTypes.func.isRequired,
+  query: PropTypes.string.isRequired,
 };

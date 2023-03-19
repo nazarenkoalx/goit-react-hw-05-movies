@@ -11,6 +11,7 @@ import {
   StyledLink,
   MovieArticle,
 } from './SingleMovieCard.styled';
+import PropTypes from 'prop-types';
 
 export const SingleMovieCard = ({ movie, location }) => {
   const { poster_path, original_title, overview, vote_average } = movie;
@@ -28,6 +29,7 @@ export const SingleMovieCard = ({ movie, location }) => {
           <MovieTitle>{original_title}</MovieTitle>
           <Overview>Overview: {overview}</Overview>
           <Votes>Votes: {vote_average}</Votes>
+
           <LinkWrapper>
             <StyledLink to={`cast`}>Cast</StyledLink>
             <StyledLink to={`reviews`}>Reviews</StyledLink>
@@ -37,4 +39,14 @@ export const SingleMovieCard = ({ movie, location }) => {
       <Outlet />
     </MovieArticle>
   );
+};
+
+SingleMovieCard.propTypes = {
+  movie: PropTypes.shape({
+    poster_path: PropTypes.string,
+    original_title: PropTypes.string,
+    overview: PropTypes.string,
+    vote_average: PropTypes.number,
+  }).isRequired,
+  location: PropTypes.object.isRequired,
 };

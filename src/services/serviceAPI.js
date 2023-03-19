@@ -13,7 +13,7 @@ export async function getTrendingMovies() {
       }
     );
     const normalisedMovies = data.results.map(
-      ({ id, title, poster_path, vote_average }) => ({
+      ({ id, title, poster_path, vote_average, genre_ids }) => ({
         id,
         title,
         poster_path,
@@ -41,7 +41,7 @@ export async function searchMovies(searchQuery) {
       }
     );
     const normalisedMovies = data.results.map(
-      ({ id, title, poster_path, vote_average }) => ({
+      ({ id, title, poster_path, vote_average, genre_ids }) => ({
         id,
         title,
         poster_path,
@@ -65,6 +65,7 @@ export async function getMovieById(id) {
         },
       }
     );
+
     return data;
   } catch (error) {
     throw new Error(error);
