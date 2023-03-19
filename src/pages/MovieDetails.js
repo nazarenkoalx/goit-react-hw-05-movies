@@ -1,11 +1,14 @@
 import { SingleMovieCard } from 'components/SingleMovieCard/SingleMovieCard';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { getMovieById } from 'services/serviceAPI';
 
 export const MovieDetails = () => {
   const [movie, setMovie] = useState({});
   const { id } = useParams();
+  const location = useLocation();
+
+  console.log(location);
 
   useEffect(() => {
     setMovie({});
@@ -16,7 +19,7 @@ export const MovieDetails = () => {
 
   return (
     <main>
-      <SingleMovieCard movie={movie} />
+      <SingleMovieCard movie={movie} location={location} />
     </main>
   );
 };
