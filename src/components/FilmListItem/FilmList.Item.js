@@ -8,7 +8,7 @@ export const FilmListItem = ({ id, title, poster_path, vote_average }) => {
     poster_path === null ? `${noPhoto}` : `${posterBaseUrl}${poster_path}`;
 
   return (
-    <Link to={`${id}`}>
+    <Link to={`/movies/${id}`}>
       <MovieCard>
         <article>
           <img src={posterPath} loading="lazy" alt={title} />
