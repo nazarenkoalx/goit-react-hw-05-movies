@@ -9,6 +9,7 @@ import {
   Votes,
   LinkWrapper,
   StyledLink,
+  MovieArticle,
 } from './SingleMovieCard.styled';
 
 export const SingleMovieCard = ({ movie, location }) => {
@@ -19,7 +20,7 @@ export const SingleMovieCard = ({ movie, location }) => {
     poster_path === null ? `${noPhoto}` : `${posterBaseUrl}${poster_path}`;
   const goBackPath = location.state?.from ?? { pathname: '/' };
   return (
-    <article>
+    <MovieArticle>
       <GoBackBtn path={goBackPath} />
       <MovieInfo>
         <Image src={posterPath} loading="lazy" alt={original_title} />
@@ -34,6 +35,6 @@ export const SingleMovieCard = ({ movie, location }) => {
         </div>
       </MovieInfo>
       <Outlet />
-    </article>
+    </MovieArticle>
   );
 };

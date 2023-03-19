@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+export const MovieArticle = styled.article`
+  margin-top: 20px;
+`;
+
 export const MovieInfo = styled.div`
   display: flex;
   gap: 20px;
