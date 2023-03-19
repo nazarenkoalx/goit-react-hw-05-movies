@@ -82,11 +82,31 @@ export async function getCastById(id) {
         },
       }
     );
-    const cast = data.cast.map(
-      ({ character, name, profile_path, popularity }) => {
-        return { character, name, profile_path, popularity };
+    const cast = data.cast.map(({ id, character, name, profile_path }) => {
+      return { id, character, name, profile_path };
+    });
+
+    return cast;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+export async function getReviewsById(id) {
+  try {
+    const { data } = await axios.get(
+      `https://api.themoviedb.org/3/movie/${id}/review`,
+      {
+        params: {
+          api_key: API_KEY,
+          language: 'en-US',
+          page: 1,
+        },
       }
     );
+    const cast = data.cast.map(({ id, character, name, profile_path }) => {
+      return { id, character, name, profile_path };
+    });
 
     return cast;
   } catch (error) {

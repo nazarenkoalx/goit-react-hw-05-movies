@@ -1,5 +1,14 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import noPhoto from '../../images/no-photo.png';
+import {
+  MovieInfo,
+  Image,
+  MovieTitle,
+  Overview,
+  Votes,
+  LinkWrapper,
+  StyledLink,
+} from './SingleMovieCard.styled';
 
 export const SingleMovieCard = ({ movie }) => {
   const { poster_path, original_title, overview, vote_average } = movie;
@@ -10,21 +19,18 @@ export const SingleMovieCard = ({ movie }) => {
 
   return (
     <article>
-      <div>
-        <img
-          src={posterPath}
-          loading="lazy"
-          alt={original_title}
-          height="100"
-        />
-        <h2>{original_title}</h2>
-        <p>{overview}</p>
-        <p>{vote_average}</p>
-      </div>
-      <div>
-        <Link to={`cast`}>Cast</Link>
-        <Link to={`reviews`}>Reviews</Link>
-      </div>
+      <MovieInfo>
+        <Image src={posterPath} loading="lazy" alt={original_title} />
+        <div>
+          <MovieTitle>{original_title}</MovieTitle>
+          <Overview>Overview: {overview}</Overview>
+          <Votes>Votes: {vote_average}</Votes>
+          <LinkWrapper>
+            <StyledLink to={`cast`}>Cast</StyledLink>
+            <StyledLink to={`reviews`}>Reviews</StyledLink>
+          </LinkWrapper>
+        </div>
+      </MovieInfo>
       <Outlet />
     </article>
   );
