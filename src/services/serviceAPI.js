@@ -95,7 +95,7 @@ export async function getCastById(id) {
 export async function getReviewsById(id) {
   try {
     const { data } = await axios.get(
-      `https://api.themoviedb.org/3/movie/${id}/review`,
+      `https://api.themoviedb.org/3/movie/${id}/reviews`,
       {
         params: {
           api_key: API_KEY,
@@ -104,11 +104,10 @@ export async function getReviewsById(id) {
         },
       }
     );
-    const cast = data.cast.map(({ id, character, name, profile_path }) => {
-      return { id, character, name, profile_path };
+    const reviews = data.results.map(({ author, content, created_at }) => {
+      return { author, content, created_at };
     });
-
-    return cast;
+    return reviews;
   } catch (error) {
     throw new Error(error);
   }

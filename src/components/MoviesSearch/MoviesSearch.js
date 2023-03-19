@@ -8,19 +8,16 @@ export const MoviesSearch = () => {
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState('');
-
   useEffect(() => {
     setMovies([]);
     setError('');
     if (!query) return;
-    searchMovies(query)
-      .then(normalisedMovies => {
-        if (normalisedMovies.length === 0) {
-          return errorToast('There are no matches with your query(');
-        }
-        setMovies(normalisedMovies);
-      })
-      .catch(error => setError(error));
+    searchMovies(query).then(normalisedMovies => {
+      if (normalisedMovies.length === 0) {
+        return errorToast('There are no matches with your query(');
+      }
+      setMovies(normalisedMovies);
+    });
   }, [query]);
 
   return (
