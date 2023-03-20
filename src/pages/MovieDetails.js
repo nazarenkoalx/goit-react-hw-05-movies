@@ -1,20 +1,19 @@
 import { SingleMovieCard } from 'components/SingleMovieCard/SingleMovieCard';
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getMovieById } from 'services/serviceAPI';
 import { Loader } from 'components/Loader/Loader';
 import { errorToast } from 'components/Toasts/Toasts';
 
 const MovieDetails = () => {
-  const [movie, setMovie] = useState({});
+  const [movie, setMovie] = useState(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
-  const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    setMovie({});
+    setMovie(null);
     setError('');
     setLoading(true);
     getMovieById(id)
@@ -42,7 +41,7 @@ const MovieDetails = () => {
   return (
     <main>
       {loading && <Loader />}
-      <SingleMovieCard movie={movie} location={location} />
+      {movie && <SingleMovieCard movie={movie} />}
     </main>
   );
 };

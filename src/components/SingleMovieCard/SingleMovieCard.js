@@ -1,5 +1,5 @@
 import { GoBackBtn } from 'components/GoBackBtn/GoBackBtn';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import noPhoto from '../../images/no-photo.png';
 import {
   MovieInfo,
@@ -13,8 +13,10 @@ import {
 } from './SingleMovieCard.styled';
 import PropTypes from 'prop-types';
 
-export const SingleMovieCard = ({ movie, location }) => {
+export const SingleMovieCard = ({ movie }) => {
   const { poster_path, original_title, overview, vote_average } = movie;
+
+  const location = useLocation();
 
   const posterBaseUrl = 'https://www.themoviedb.org/t/p/w500';
   const posterPath =
@@ -31,8 +33,12 @@ export const SingleMovieCard = ({ movie, location }) => {
           <Votes>Votes: {vote_average}</Votes>
 
           <LinkWrapper>
-            <StyledLink to={`cast`}>Cast</StyledLink>
-            <StyledLink to={`reviews`}>Reviews</StyledLink>
+            <StyledLink to={`cast`} state={{ from: goBackPath }}>
+              Cast
+            </StyledLink>
+            <StyledLink to={`reviews`} state={{ from: goBackPath }}>
+              Reviews
+            </StyledLink>
           </LinkWrapper>
         </div>
       </MovieInfo>
@@ -48,5 +54,4 @@ SingleMovieCard.propTypes = {
     overview: PropTypes.string,
     vote_average: PropTypes.number,
   }).isRequired,
-  location: PropTypes.object.isRequired,
 };
